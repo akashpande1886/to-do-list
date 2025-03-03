@@ -10,10 +10,7 @@ function handleRenderTask(event) {
 
 function printTask() {
   let todoListHTML = "";
-  for (let i = 0; i < todoList.length; i++) {
-    const todoObject = todoList[i];
-    // const name=todoObject.name;
-    // const dueDate = todoObject.dueDate;
+  todoList.forEach(function(todoObject,i){
     const { name, dueDate } = todoObject;
     const html = `
     <div>${name}</div> 
@@ -21,7 +18,19 @@ function printTask() {
     <button onClick="todoList.splice(${i},1);
     printTask();" class="delete-button">Delete</button>`;
     todoListHTML += html;
-  }
+  })
+  // for (let i = 0; i < todoList.length; i++) {
+  //   const todoObject = todoList[i];
+  //   // const name=todoObject.name;
+  //   // const dueDate = todoObject.dueDate;
+  //   const { name, dueDate } = todoObject;
+  //   const html = `
+  //   <div>${name}</div> 
+  //   <div> ${dueDate}</div> 
+  //   <button onClick="todoList.splice(${i},1);
+  //   printTask();" class="delete-button">Delete</button>`;
+  //   todoListHTML += html;
+  // }
   document.querySelector(".js-display").innerHTML = todoListHTML;
    localStorage.setItem('js-display', JSON.stringify(todoList));
 }
